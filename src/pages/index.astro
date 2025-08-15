@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ContactBlock from '../components/ContactBlock.astro';
+import { getSiteData } from '../data/load';
+
+const data = await getSiteData();
+const { services, main } = data;
+
+const serviceIcons = {
+  'idou-shien': 'move',
+  'koudou-engou': 'support',
+  'tokutei-soudan': 'consult',
+} as const;
+---
+
+<BaseLayout>
+  <!-- ヒーロー -->
+  <Hero
+    title="すべての方の社会参加をめざします"
+    description={main.main_copy}
+    image="/images/hero/home-hero.jpg"
+    imageAlt="温かみのある支援の様子"
+    size="lg"
+  />
+
+  <!-- お知らせ -->
+  {main.notices.length > 0 && (
+    <div class="bg-primary-50">
+      <div class="container py-4">
+        <div class="flex items-start md:items-center gap-4 md:gap-6">
+          <div class="shrink-0 font-bold text-primary-700">お知らせ</div>
+          <ul class="space-y-2 md:space-y-0">
+            {main.notices.map(notice => (
+              <li class="text-gray-700">{notice}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- サービス -->
+  <section class="section" aria-labelledby="services-heading">
+    <div class="container">
+      <h2 id="services-heading" class="text-center mb-12">提供サービス</h2>
+      <div class="grid gap-6 md:grid-cols-3">
+        {services.map(service => (
+          <ServiceCard
+            id={service.id}
+            title={service.title}
+            description={service.description}
+            icon={serviceIcons[service.id as keyof typeof serviceIcons]}
+          />
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/services/" class="btn-primary">
+          サービス詳細を見る
+          <svg
+            class="w-5 h-5 ml-2"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 支援の流れ -->
+  <section class="section bg-gray-50" aria-labelledby="flow-heading">
+    <div class="container">
+      <h2 id="flow-heading" class="text-center mb-12">障害福祉サービス利用の流れ</h2>
+      <div class="max-w-3xl mx-auto">
+        <p class="text-center text-gray-600 mb-8">
+          障害福祉サービスの利用には、お住まいの区市町村での支給決定が必要です。<br>
+          相談から利用開始までの流れをご案内します。
+        </p>
+        <div class="text-center">
+          <a href="/flow/" class="btn-primary">
+            手続の流れを詳しく見る
+            <svg
+              class="w-5 h-5 ml-2"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ -->
+  <ContactBlock />
+</BaseLayout>

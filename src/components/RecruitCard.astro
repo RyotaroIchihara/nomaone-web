@@ -1,0 +1,131 @@
+---
+interface Requirements {
+  must: string[];
+  preferred?: string[];
+  special_allowance?: string[];
+}
+
+interface TrialPeriod {
+  length: string;
+  conditions: string;
+}
+
+interface Props {
+  title: string;
+  employment_type: string[];
+  wage: string;
+  description: string;
+  plus_work_if_qualified?: string;
+  appeal: string;
+  trial_period: TrialPeriod;
+  requirements: Requirements;
+}
+
+const {
+  title,
+  employment_type,
+  wage,
+  description,
+  plus_work_if_qualified,
+  appeal,
+  trial_period,
+  requirements,
+} = Astro.props;
+---
+
+<div class="card">
+  <div class="border-b pb-4 mb-4">
+    <h3 class="text-xl font-bold mb-2">{title}</h3>
+    <div class="flex flex-wrap gap-2">
+      {employment_type.map(type => (
+        <span class="inline-block px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
+          {type}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <div class="space-y-6">
+    <!-- 給与 -->
+    <div>
+      <h4 class="font-medium text-gray-700 mb-1">給与</h4>
+      <p class="text-lg font-medium text-primary-600">{wage}</p>
+    </div>
+
+    <!-- 仕事内容 -->
+    <div>
+      <h4 class="font-medium text-gray-700 mb-1">仕事内容</h4>
+      <p class="text-gray-600">{description}</p>
+      {plus_work_if_qualified && (
+        <p class="mt-2 text-gray-600">{plus_work_if_qualified}</p>
+      )}
+    </div>
+
+    <!-- アピールポイント -->
+    <div>
+      <h4 class="font-medium text-gray-700 mb-1">アピールポイント</h4>
+      <p class="text-gray-600">{appeal}</p>
+    </div>
+
+    <!-- 試用期間 -->
+    <div>
+      <h4 class="font-medium text-gray-700 mb-1">試用期間</h4>
+      <p class="text-gray-600">{trial_period.length}（{trial_period.conditions}）</p>
+    </div>
+
+    <!-- 応募要件 -->
+    <div>
+      <h4 class="font-medium text-gray-700 mb-1">応募要件</h4>
+      <div class="space-y-3">
+        <div>
+          <h5 class="text-sm font-medium text-gray-600 mb-1">必須</h5>
+          <ul class="list-disc list-inside text-gray-600 space-y-1">
+            {requirements.must.map(item => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+
+        {requirements.preferred && (
+          <div>
+            <h5 class="text-sm font-medium text-gray-600 mb-1">歓迎</h5>
+            <ul class="list-disc list-inside text-gray-600 space-y-1">
+              {requirements.preferred.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {requirements.special_allowance && (
+          <div>
+            <h5 class="text-sm font-medium text-gray-600 mb-1">手当</h5>
+            <ul class="list-disc list-inside text-gray-600 space-y-1">
+              {requirements.special_allowance.map(item => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-8 text-center">
+    <a href="/contact/" class="btn-primary">
+      応募・問い合わせをする
+      <svg
+        class="w-5 h-5 ml-2"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</div>

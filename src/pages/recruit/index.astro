@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import RecruitCard from '../../components/RecruitCard.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+import { getSiteData } from '../../data/load';
+
+const data = await getSiteData();
+const { recruit } = data;
+
+const pageTitle = '採用情報';
+const pageDescription = '福祉サービスの提供を通じて、地域社会に貢献したい方を募集しています。未経験の方も歓迎です。';
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Hero
+    title={pageTitle}
+    description={pageDescription}
+    image="/images/hero/recruit-hero.jpg"
+    imageAlt="やりがいのある福祉の仕事"
+    size="sm"
+  />
+
+  <div class="section">
+    <div class="container">
+      <div class="max-w-4xl mx-auto space-y-8">
+        {recruit.positions.map(position => (
+          <RecruitCard
+            title={position.title}
+            employment_type={position.employment_type}
+            wage={position.wage}
+            description={position.description}
+            plus_work_if_qualified={position.plus_work_if_qualified}
+            appeal={position.appeal}
+            trial_period={position.trial_period}
+            requirements={position.requirements}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <ContactBlock showRecruitButton={false} />
+</BaseLayout>

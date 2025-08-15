@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  size?: 'sm' | 'lg';
+}
+
+const {
+  title,
+  description,
+  image = '/images/placeholder/hero.jpg',
+  imageAlt = '障害福祉サービスのイメージ写真',
+  size = 'lg'
+} = Astro.props;
+---
+
+<div class={`relative overflow-hidden ${size === 'lg' ? 'h-[70vh] min-h-[480px] max-h-[640px]' : 'h-[40vh] min-h-[320px]'}`}>
+  <!-- 背景画像 -->
+  <div class="absolute inset-0">
+    <img
+      src={image}
+      alt={imageAlt}
+      class="w-full h-full object-cover"
+      loading={size === 'lg' ? 'eager' : 'lazy'}
+      decoding={size === 'lg' ? 'sync' : 'async'}
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-gray-900/60 to-gray-900/40"></div>
+  </div>
+
+  <!-- コンテンツ -->
+  <div class="relative h-full">
+    <div class="container h-full flex items-center">
+      <div class="max-w-3xl">
+        <h1 class="text-white mb-6 leading-tight">{title}</h1>
+        {description && (
+          <p class="text-lg md:text-xl text-white/90 leading-relaxed">
+            {description}
+          </p>
+        )}
+      </div>
+    </div>
+  </div>
+</div>

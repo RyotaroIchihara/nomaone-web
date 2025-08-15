@@ -1,0 +1,39 @@
+---
+interface Partner {
+  name: string;
+  role: string;
+  representative?: string;
+  address?: string;
+  tel?: string;
+}
+
+interface Props {
+  partners: Partner[];
+}
+
+const { partners } = Astro.props;
+---
+
+<div class="grid gap-6 md:grid-cols-2">
+  {partners.map(partner => (
+    <div class="card">
+      <h3 class="text-lg font-bold mb-2">{partner.name}</h3>
+      <div class="text-sm text-gray-600 space-y-1">
+        <p>{partner.role}</p>
+        {partner.representative && (
+          <p>代表: {partner.representative}</p>
+        )}
+        {partner.address && (
+          <p>所在地: {partner.address}</p>
+        )}
+        {partner.tel && (
+          <p>
+            TEL: <a href={`tel:${partner.tel.replace(/[^\d]/g, '')}`} class="text-primary-600 hover:text-primary-500">
+              {partner.tel}
+            </a>
+          </p>
+        )}
+      </div>
+    </div>
+  ))}
+</div>

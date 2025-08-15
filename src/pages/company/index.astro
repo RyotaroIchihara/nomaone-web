@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import PartnerList from '../../components/PartnerList.astro';
+import ContactBlock from '../../components/ContactBlock.astro';
+import { getSiteData } from '../../data/load';
+import { formatPostalCode, formatAddress } from '../../utils/format';
+
+// ヒーロー画像のインポート
+
+
+const data = await getSiteData();
+const { office, operations } = data;
+const { legal_name, mission, address, contacts, representative, partners } = office;
+
+const pageTitle = '会社概要';
+const pageDescription = '障害のある人もない人も安心で普通に地域生活や社会参加行動を行うための支援を行います。';
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <Hero
+    title={pageTitle}
+    description={mission || ''}
+    image="/images/hero/company-hero.jpg"
+    imageAlt="多様性と可能性の表現"
+    size="sm"
+  />
+
+  <div class="section">
+    <div class="container">
+      <div class="max-w-3xl mx-auto">
+        <!-- 基本情報 -->
+        <div class="card mb-12">
+          <h2 class="text-xl font-bold mb-6">基本情報</h2>
+          <dl class="space-y-4">
+            <div class="grid md:grid-cols-4 gap-2">
+              <dt class="font-medium text-gray-700">法人名</dt>
+              <dd class="md:col-span-3">{legal_name}</dd>
+            </div>
+            <div class="grid md:grid-cols-4 gap-2">
+              <dt class="font-medium text-gray-700">所在地</dt>
+              <dd class="md:col-span-3">
+                <p>〒{formatPostalCode(address.postal_code)}</p>
+                <p>{formatAddress(address.prefecture, address.city, address.street)}</p>
+                {address.access_note && (
+                  <p class="text-gray-600 mt-2 border-l-4 border-gray-200 pl-3">
+                    {address.access_note}
+                  </p>
+                )}
+              </dd>
+            </div>
+            <div class="grid md:grid-cols-4 gap-2">
+              <dt class="font-medium text-gray-700">連絡先</dt>
+              <dd class="md:col-span-3">
+                <p>TEL/FAX: {contacts.tel_fax}</p>
+                <p>Email: {contacts.email}</p>
+              </dd>
+            </div>
+            <div class="grid md:grid-cols-4 gap-2">
+              <dt class="font-medium text-gray-700">営業時間</dt>
+              <dd class="md:col-span-3">{operations.office_hours}</dd>
+            </div>
+            <div class="grid md:grid-cols-4 gap-2">
+              <dt class="font-medium text-gray-700">サービス提供時間</dt>
+              <dd class="md:col-span-3">{operations.service_hours}</dd>
+            </div>
+            <div class="grid md:grid-cols-4 gap-2">
+              <dt class="font-medium text-gray-700">対応エリア</dt>
+              <dd class="md:col-span-3">{operations.service_areas.join('、')}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- 代表者プロフィール -->
+        <div class="card mb-12">
+          <h2 class="text-xl font-bold mb-6">代表者プロフィール</h2>
+          <div class="space-y-4">
+            <p class="font-medium">{representative.title} {representative.name}</p>
+            <p class="text-gray-600 whitespace-pre-wrap">{representative.profile}</p>
+          </div>
+        </div>
+
+        <!-- 協力団体 -->
+        <div class="mb-12">
+          <h2 class="text-xl font-bold mb-6">協力団体</h2>
+          <PartnerList partners={partners} />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ContactBlock />
+</BaseLayout>
