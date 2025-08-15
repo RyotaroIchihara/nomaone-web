@@ -5,8 +5,7 @@ import PartnerList from '../../components/PartnerList.astro';
 import ContactBlock from '../../components/ContactBlock.astro';
 import { getSiteData } from '../../data/load';
 import { formatPostalCode, formatAddress } from '../../utils/format';
-
-// ヒーロー画像のインポート
+import companyHeroImage from '../../assets/images/hero/company-hero.jpg';
 
 
 const data = await getSiteData();
@@ -21,7 +20,7 @@ const pageDescription = '障害のある人もない人も安心で普通に地�
   <Hero
     title={pageTitle}
     description={mission || ''}
-    image="/images/hero/company-hero.jpg"
+    image={companyHeroImage}
     imageAlt="多様性と可能性の表現"
     size="sm"
   />

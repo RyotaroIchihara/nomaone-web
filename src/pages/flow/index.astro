@@ -5,6 +5,7 @@ import FlowStep from '../../components/FlowStep.astro';
 import ContactBlock from '../../components/ContactBlock.astro';
 import { getSiteData } from '../../data/load';
 import { formatPhoneForTel } from '../../utils/format';
+import flowHeroImage from '../../assets/images/hero/flow-hero.jpg';
 
 const data = await getSiteData();
 const { flow } = data;
@@ -18,7 +19,7 @@ const pageDescription = '障害福祉サービスの利用開始までの手続�
   <Hero
     title={pageTitle}
     description={pageDescription}
-    image="/images/hero/flow-hero.jpg"
+    image={flowHeroImage}
     imageAlt="支援の計画と実行の様子"
     size="sm"
   />

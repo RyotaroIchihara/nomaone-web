@@ -4,6 +4,7 @@ import Hero from '../../components/Hero.astro';
 import RecruitCard from '../../components/RecruitCard.astro';
 import ContactBlock from '../../components/ContactBlock.astro';
 import { getSiteData } from '../../data/load';
+import recruitHeroImage from '../../assets/images/hero/recruit-hero.jpg';
 
 const data = await getSiteData();
 const { recruit } = data;
@@ -16,7 +17,7 @@ const pageDescription = '福祉サービスの提供を通じて、地域社会�
   <Hero
     title={pageTitle}
     description={pageDescription}
-    image="/images/hero/recruit-hero.jpg"
+    image={recruitHeroImage}
     imageAlt="やりがいのある福祉の仕事"
     size="sm"
   />

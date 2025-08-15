@@ -4,6 +4,7 @@ import Hero from '../../components/Hero.astro';
 import ContactBlock from '../../components/ContactBlock.astro';
 import { getSiteData } from '../../data/load';
 import { getAssetPath } from '../../utils/paths';
+import servicesHeroImage from '../../assets/images/hero/services-hero.jpg';
 
 const data = await getSiteData();
 const { services } = data;
@@ -16,7 +17,7 @@ const pageDescription = '移動支援・行動援護・指定特定相談支援�
   <Hero
     title={pageTitle}
     description={pageDescription}
-    image="/images/hero/services-hero.jpg"
+    image={servicesHeroImage}
     imageAlt="寄り添う支援の様子"
     size="sm"
   />

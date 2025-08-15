@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import { getSiteData } from '../../data/load';
 import { formatPhoneForDisplay, formatPhoneForTel } from '../../utils/format';
+import contactHeroImage from '../../assets/images/hero/contact-hero.jpg';
 
 const data = await getSiteData();
 const { contact, office } = data;
@@ -16,7 +17,7 @@ const pageDescription = 'サービスに関するご相談・お問い合わせ�
   <Hero
     title={pageTitle}
     description={pageDescription}
-    image="/images/hero/contact-hero.jpg"
+    image={contactHeroImage}
     imageAlt="つながりを表現する温かな手"
     size="sm"
   />
