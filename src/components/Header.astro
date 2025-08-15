@@ -1,17 +1,18 @@
 ---
 import { getSiteData } from '../data/load';
 import { formatPhoneForTel } from '../utils/format';
+import { getAssetPath } from '../utils/paths';
 
 const siteData = await getSiteData();
 const { brand_name, contacts } = siteData.office;
 
 const menuItems = [
-  { href: '/', text: 'ホーム' },
-  { href: '/services/', text: 'サービス' },
-  { href: '/flow/', text: '利用の流れ' },
-  { href: '/recruit/', text: '採用情報' },
-  { href: '/company/', text: '会社概要' },
-  { href: '/contact/', text: 'お問い合わせ' },
+  { href: getAssetPath('/'), text: 'ホーム' },
+  { href: getAssetPath('/services/'), text: 'サービス' },
+  { href: getAssetPath('/flow/'), text: '利用の流れ' },
+  { href: getAssetPath('/recruit/'), text: '採用情報' },
+  { href: getAssetPath('/company/'), text: '会社概要' },
+  { href: getAssetPath('/contact/'), text: 'お問い合わせ' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -21,7 +22,7 @@ const currentPath = Astro.url.pathname;
   <div class="container">
     <div class="flex items-center justify-between h-16">
       <!-- ロゴ -->
-      <a href="/" class="flex items-center">
+      <a href={getAssetPath('/')} class="flex items-center">
         <span class="text-xl font-bold text-primary-700">{brand_name}</span>
       </a>
 

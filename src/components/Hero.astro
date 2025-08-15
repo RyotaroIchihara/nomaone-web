@@ -1,4 +1,6 @@
 ---
+import { getAssetPath } from '../utils/paths';
+
 interface Props {
   title: string;
   description?: string;
@@ -14,13 +16,15 @@ const {
   imageAlt = '障害福祉サービスのイメージ写真',
   size = 'lg'
 } = Astro.props;
+
+const imageUrl = getAssetPath(image);
 ---
 
 <div class={`relative overflow-hidden ${size === 'lg' ? 'h-[70vh] min-h-[480px] max-h-[640px]' : 'h-[40vh] min-h-[320px]'}`}>
   <!-- 背景画像 -->
   <div class="absolute inset-0">
     <img
-      src={image}
+      src={imageUrl}
       alt={imageAlt}
       class="w-full h-full object-cover"
       loading={size === 'lg' ? 'eager' : 'lazy'}
