@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ContactBlock from '../components/ContactBlock.astro';
 import { getSiteData } from '../data/load';
+import { getAssetPath } from '../utils/paths';
 
 const data = await getSiteData();
 const { services, main } = data;
@@ -20,7 +21,7 @@ const serviceIcons = {
   <Hero
     title="すべての方の社会参加をめざします"
     description={main.main_copy}
-    image="/images/hero/home-hero.jpg"
+    image={getAssetPath('/images/hero/home-hero.jpg')}
     imageAlt="温かみのある支援の様子"
     size="lg"
   />
@@ -56,7 +57,7 @@ const serviceIcons = {
         ))}
       </div>
       <div class="text-center mt-8">
-        <a href="/services/" class="btn-primary">
+        <a href={getAssetPath('/services/')} class="btn-primary">
           サービス詳細を見る
           <svg
             class="w-5 h-5 ml-2"
@@ -85,7 +86,7 @@ const serviceIcons = {
           相談から利用開始までの流れをご案内します。
         </p>
         <div class="text-center">
-          <a href="/flow/" class="btn-primary">
+          <a href={getAssetPath('/flow/')} class="btn-primary">
             手続の流れを詳しく見る
             <svg
               class="w-5 h-5 ml-2"
