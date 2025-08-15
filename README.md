@@ -87,7 +87,7 @@ git config --global user.email "<GitHubのメール or noreply>"
    git clone https://github.com/RyotaroIchihara/nomaone-web.git
    cd nomaone-web
    pnpm install
-   pnpm run dev
+   pnpm pnpm run dev --host --port 43223
    ```
 3. 以降は通常どおり `git add/commit/push` で **自動デプロイ**。
 
