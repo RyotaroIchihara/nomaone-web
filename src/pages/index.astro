@@ -5,6 +5,7 @@ import ServiceCard from '../components/ServiceCard.astro';
 import ContactBlock from '../components/ContactBlock.astro';
 import { getSiteData } from '../data/load';
 import { getAssetPath } from '../utils/paths';
+import homeHeroImage from '../assets/images/hero/home-hero.jpg';
 
 const data = await getSiteData();
 const { services, main } = data;
@@ -21,7 +22,7 @@ const serviceIcons = {
   <Hero
     title="すべての方の社会参加をめざします"
     description={main.main_copy}
-    image="/images/hero/home-hero.jpg"
+    image={homeHeroImage}
     imageAlt="温かみのある支援の様子"
     size="lg"
   />
