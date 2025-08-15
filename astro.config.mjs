@@ -3,8 +3,9 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.nomaone.or.jp',
-  trailingSlash: 'always',
+  site: 'https://RyotaroIchihara.github.io',
+  base: '/nomaone-web/',      // ← リポジトリ名に合わせる
+  trailingSlash: 'always',     // 階層リンクの相対解決が安定
   build: {
     assets: 'assets',
   },
