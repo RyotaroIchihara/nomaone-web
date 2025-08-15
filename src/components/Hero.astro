@@ -17,7 +17,8 @@ const {
   size = 'lg'
 } = Astro.props;
 
-const imageUrl = getAssetPath(image);
+// パスの先頭の / を削除して相対パスに変換
+const imageUrl = getAssetPath(image.startsWith('/') ? image.slice(1) : image);
 ---
 
 <div class={`relative overflow-hidden ${size === 'lg' ? 'h-[70vh] min-h-[480px] max-h-[640px]' : 'h-[40vh] min-h-[320px]'}`}>
