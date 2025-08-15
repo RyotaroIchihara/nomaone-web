@@ -1,6 +1,7 @@
 ---
 import { getSiteData } from '../data/load';
 import { formatAddress, formatPhoneForTel, formatPostalCode } from '../utils/format';
+import { getAssetPath } from '../utils/paths';
 
 const siteData = await getSiteData();
 const { office, operations } = siteData;
@@ -10,18 +11,18 @@ const footerLinks = [
   {
     title: 'サービス',
     items: [
-      { href: '/services/#idou-shien', text: '移動支援' },
-      { href: '/services/#koudou-engou', text: '行動援護' },
-      { href: '/services/#tokutei-soudan', text: '指定特定相談支援' },
+      { href: getAssetPath('/services/#idou-shien'), text: '移動支援' },
+      { href: getAssetPath('/services/#koudou-engou'), text: '行動援護' },
+      { href: getAssetPath('/services/#tokutei-soudan'), text: '指定特定相談支援' },
     ],
   },
   {
     title: '情報',
     items: [
-      { href: '/flow/', text: '利用の流れ' },
-      { href: '/company/', text: '会社概要' },
-      { href: '/recruit/', text: '採用情報' },
-      { href: '/contact/', text: 'お問い合わせ' },
+      { href: getAssetPath('/flow/'), text: '利用の流れ' },
+      { href: getAssetPath('/company/'), text: '会社概要' },
+      { href: getAssetPath('/recruit/'), text: '採用情報' },
+      { href: getAssetPath('/contact/'), text: 'お問い合わせ' },
     ],
   },
 ];
@@ -102,13 +103,13 @@ const footerLinks = [
 <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t z-40">
   <div class="grid grid-cols-2 gap-1 p-2">
     <a
-      href="/contact/"
+      href={getAssetPath('/contact/')}
       class="btn-primary text-sm py-2"
     >
       お問い合わせ
     </a>
     <a
-      href="/recruit/"
+      href={getAssetPath('/recruit/')}
       class="btn-secondary text-sm py-2"
     >
       ヘルパー登録
