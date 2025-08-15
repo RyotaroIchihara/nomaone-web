@@ -18,13 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository using git
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install, build, and upload your site
-        uses: withastro/action@v1
-        # with:
-          # path: . # リポジトリのルートディレクトリを使用する場合は省略可能
-          # node-version: 18 # デフォルトは 18
-          # package-manager: pnpm@latest # デフォルトは npm
+        uses: withastro/action@v2
+        with:
+          path: .  # リポジトリのルートディレクトリを使用
+          node-version: 20 # Node.js 20を使用
+          package-manager: npm # npmを使用
 
   deploy:
     needs: build
@@ -35,4 +35,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
