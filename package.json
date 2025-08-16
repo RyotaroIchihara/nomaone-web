@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "homepage": "https://www.nomaone.or.jp/",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host --port 43223",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
