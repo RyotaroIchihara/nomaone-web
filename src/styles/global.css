@@ -4,11 +4,16 @@
 
 @layer base {
   html {
-    @apply scroll-smooth antialiased;
+    @apply scroll-smooth antialiased text-gray-800;
+    font-feature-settings: "palt";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   
   body {
-    @apply text-gray-800;
+    @apply leading-relaxed tracking-wide;
+    letter-spacing: 0.03em;
   }
   
   /* フォーカス管理 */
@@ -18,15 +23,21 @@
   
   /* 見出し */
   h1 {
-    @apply text-3xl md:text-4xl font-bold mb-6;
+    @apply text-3xl md:text-4xl font-bold mb-6 tracking-wide;
+    letter-spacing: 0.05em;
+    line-height: 1.5;
   }
   
   h2 {
-    @apply text-2xl md:text-3xl font-bold mb-4;
+    @apply text-2xl md:text-3xl font-bold mb-4 tracking-wide;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
   }
   
   h3 {
-    @apply text-xl md:text-2xl font-bold mb-3;
+    @apply text-xl md:text-2xl font-bold mb-3 tracking-wide;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
   }
 }
 
@@ -43,7 +54,8 @@
   
   /* ボタン */
   .btn {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition duration-200 tracking-wide;
+    letter-spacing: 0.05em;
   }
   
   .btn-primary {
@@ -60,7 +72,7 @@
   
   /* カード */
   .card {
-    @apply bg-white rounded-lg shadow-sm p-6;
+    @apply bg-white rounded-lg shadow-sm p-6 leading-relaxed;
   }
   
   /* リンク */
@@ -74,7 +86,8 @@
   
   /* テキスト装飾 */
   .lead {
-    @apply text-xl text-gray-600;
+    @apply text-xl text-gray-600 tracking-wide leading-relaxed;
+    letter-spacing: 0.03em;
   }
 }
 

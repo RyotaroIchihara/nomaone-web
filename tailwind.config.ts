@@ -32,10 +32,20 @@ export default {
       },
       fontFamily: {
         sans: [
+          '"Zen Kaku Gothic New"',
           '"Noto Sans JP"',
+          '"Hiragino Sans"',
+          '"Hiragino Kaku Gothic ProN"',
+          '"メイリオ"',
           'system-ui',
           '-apple-system',
           'sans-serif',
+        ],
+        mincho: [
+          '"Zen Old Mincho"',
+          '"Hiragino Mincho ProN"',
+          '"Yu Mincho"',
+          'serif',
         ],
       },
       spacing: {
