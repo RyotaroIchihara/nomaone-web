@@ -3,7 +3,7 @@ import { getSiteData } from '../data/load';
 import { formatPhoneForDisplay, formatPhoneForTel } from '../utils/format';
 
 const siteData = await getSiteData();
-const { contact, office } = siteData;
+const { contact, office, recruit } = siteData;
 const { tel_fax } = office.contacts;
 
 interface Props {
@@ -44,7 +44,7 @@ const { showRecruitButton = true } = Astro.props;
 
         <!-- ヘルパー登録 -->
         {showRecruitButton && (
-          <a href="/recruit/" class="btn-secondary">
+          <a href={recruit.url} class="btn-secondary" target="_blank" rel="noopener noreferrer">
             ヘルパー登録について
             <svg
               class="w-5 h-5 ml-2"
