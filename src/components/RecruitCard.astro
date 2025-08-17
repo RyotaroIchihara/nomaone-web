@@ -1,4 +1,6 @@
 ---
+import { getSiteData } from '../data/load';
+
 interface Requirements {
   must: string[];
   preferred?: string[];
@@ -31,6 +33,9 @@ const {
   trial_period,
   requirements,
 } = Astro.props;
+
+const siteData = await getSiteData();
+const { recruit } = siteData;
 ---
 
 <div class="card">
@@ -112,7 +117,7 @@ const {
   </div>
 
   <div class="mt-8 text-center">
-    <a href="/contact/" class="btn-primary">
+    <a href={recruit.url} class="btn-primary" target="_blank" rel="noopener noreferrer">
       応募・問い合わせをする
       <svg
         class="w-5 h-5 ml-2"
